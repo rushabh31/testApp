@@ -1,5 +1,5 @@
 library(shiny)
-library(shiny.semantic)
+library(shinyWidgets)
 
 ui <- basicPage(
   titlePanel("testApp mainpage"),
@@ -12,8 +12,29 @@ ui <- basicPage(
                              "text/comma-separated-values,text/plain",
                              ".csv")
                  ),
+                 # DropDowns for X and Y axis
                  selectInput(inputId = "selectX", label = "Select X-axis variable:", choices = ''),
-                 selectInput(inputId = "selectY", label = "Select Y-axis variable:", choices = '')
+                 selectInput(inputId = "selectY", label = "Select Y-axis variable:", choices = ''),
+                 
+                 # Add radios to choose type of plot
+                 radioGroupButtons(
+                   inputId = "radioPlot",
+                   label = "Select Plot Type",
+                   choices = c("Bar", "Dot", "Line", "Pie"),
+                   justified = TRUE,
+                   checkIcon = list(yes = icon("ok", 
+                                lib = "glyphicon")),
+                   selected = F,
+                   status = "warning"
+                 ),
+                 
+                 # interactive or no?
+                 prettySwitch(
+                   inputId = "interact",
+                   label = "Interactive plot", 
+                   status = "primary",
+                   slim = TRUE
+                 )
                  ),
     mainPanel("Resulting Data with Plot",
               tableOutput("tabout"))
