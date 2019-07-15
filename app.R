@@ -4,7 +4,7 @@ library(shinyWidgets)
 ui <- basicPage(
   titlePanel("testApp mainpage"),
   
-  sidebarLayout( 
+  sidebarLayout(  
     sidebarPanel(h4("Select input params:"),
                  fileInput("file1", "Upload data file (csv/txt/tsv):",
                            accept = c(
